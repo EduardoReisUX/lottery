@@ -7,12 +7,12 @@ module.exports = {
 		extend: {
 			colors: {
 				brand: {
-					mega: '#5AAD7D;',
-					quina: '#6BEFA3;',
-					lotofacil: '#8666EF;',
-					lotomania: '#BFAF83;',
-					timemania: '#DD7AC6;',
-					diaDeSorte: '#FFAB64;',
+					mega: '#5AAD7D',
+					quina: '#6BEFA3',
+					lotofacil: '#8666EF',
+					lotomania: '#BFAF83',
+					timemania: '#DD7AC6',
+					diaDeSorte: '#FFAB64',
 
 					bg: '#EFEFEF',
 
