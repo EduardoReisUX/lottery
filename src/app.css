@@ -8,4 +8,8 @@
 	body {
 		@apply bg-brand-bg;
 	}
+
+	html {
+		@apply overflow-x-hidden lg:overflow-y-hidden;
+	}
 }
