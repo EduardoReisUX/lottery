@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let numero_concurso: string;
-	export let data_concurso: string;
+	export let data_concurso: Date;
 </script>
 
 <div class="text-center text-brand-white">

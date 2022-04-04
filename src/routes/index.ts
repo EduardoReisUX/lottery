@@ -1,24 +1,47 @@
-import type { HomeProps } from '$root/types';
+import type { ConcursoType, LoteriasConcursosType, LoteriasType } from '$root/types';
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async ({ url, request }) => {
-	let lottery;
+export const get: RequestHandler = async () => {
+	const baseLink = 'https://brainn-api-loterias.herokuapp.com/api/v1';
 
-	if (url.pathname !== '/') {
-		const form = await request.formData();
-		lottery = String(form.get('lottery-select')).replace(/-|\s/g, '').toLocaleLowerCase();
-	} else {
-		lottery = 'megasena';
-	}
+	let link = `${baseLink}/loterias`;
+	const loterias: LoteriasType = await (await fetch(link)).json();
 
-	const token = import.meta.env.VITE_PRIVATE_TOKEN;
-	const link = `https://apiloterias.com.br/app/resultado?loteria=${lottery}&token=${token}`;
+	link = `${baseLink}/loterias-concursos`;
+	const loteriasConcursos: LoteriasConcursosType = await (await fetch(link)).json();
 
-	const response: HomeProps = await (await fetch(link)).json();
-	const { nome, numero_concurso, data_concurso, dezenas } = response;
+	link = `${baseLink}/concursos/2359`;
+	const concurso: ConcursoType = await (await fetch(link)).json();
+
+	let data = {
+		loterias: loterias.map((loteria, index) => ({
+			...loteria,
+			concursoId: loteriasConcursos[index].concursoId
+		})),
+		concurso: { ...concurso }
+	};
 
 	return {
 		status: 200,
-		body: { props: { nome, numero_concurso, data_concurso, dezenas } }
+		body: {
+			props: data
+		}
 	};
 };
+
+/* export const post: RequestHandler = async ({ request }) => {
+	const form = await request.formData();
+	const concursoId = String(form.get('lottery-select'));
+
+	const link = `https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${concursoId}`;
+	const response = await (await fetch(link)).json();
+	console.log(response);
+
+	return {
+		status: 200,
+		body: {
+			props: {}
+		}
+	};
+};
+ */
