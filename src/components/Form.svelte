@@ -4,18 +4,21 @@
 		nome: string;
 		concursoId: string;
 	}[];
+
+	export let getResults: (concursoId: string) => void;
 </script>
 
-<form action="/" method="GET">
+<form>
 	<select
 		name="loteria"
 		class="bg-brand-white text-brand-blackMuted uppercase py-4 px-4 pr-28 rounded-lg shadow-md"
+		on:change={(e) => {
+			//@ts-ignore
+			getResults(e.target.value);
+		}}
 	>
 		{#each loterias as loteria}
 			<option class="uppercase" value={loteria.concursoId}>{loteria.nome}</option>
 		{/each}
 	</select>
-	<button class="p-4 bg-brand-quina text-brand-white font-bold rounded-lg shadow-md" type="submit"
-		>Pesquisar</button
-	>
 </form>
