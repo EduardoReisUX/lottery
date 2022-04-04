@@ -10,8 +10,16 @@
 
 	export let props: HomeProps;
 	let { concurso, loterias } = props;
-
-	let windowsWidth = 0;
+	let innerWidth = 0;
+	let selectedConcursoId = '2359';
+	let bgColors = {
+		'2359': '#6BEFA3',
+		'5534': '#8666EF',
+		'2200': '#DD7AC6',
+		'2167': '#FFAB64',
+		'1622': '#5AAD7D',
+		'440': '#BFAF83'
+	};
 
 	async function getResults(concursoId: string) {
 		const cache = localStorage.getItem(`@megasena-resultado[${concursoId}]`);
@@ -26,10 +34,12 @@
 			concurso = data;
 			localStorage.setItem(`@megasena-resultado[${concursoId}]`, JSON.stringify(data));
 		}
+
+		selectedConcursoId = concursoId; // changes bg color
 	}
 </script>
 
-<svelte:window bind:innerWidth={windowsWidth} />
+<svelte:window bind:innerWidth />
 
 <svelte:head>
 	<title>Mega-Sena</title>
@@ -37,13 +47,14 @@
 
 <main class="min-h-screen grid lg:grid-cols-2">
 	<section
-		class="relative grid grid-flow-row place-items-center bg-brand-mega py-16 pb-28 gap-20 
-			lg:grid-rows-3 lg:gap-[5.25rem] lg:pr-16"
+		class="relative grid grid-flow-row place-items-center bg-brand-mega py-16 pb-28 gap-20 lg:grid-rows-3 
+	lg:gap-[5.25rem] lg:pr-16"
+		style="background-color: {bgColors[selectedConcursoId]}"
 	>
 		<Form {loterias} {getResults} />
 		<Name nome={loterias[0].nome} />
 		<ContestDate data_concurso={concurso.data} numero_concurso={concurso.id} />
-		<Divider {windowsWidth} />
+		<Divider windowsWidth={innerWidth} />
 	</section>
 
 	<section
