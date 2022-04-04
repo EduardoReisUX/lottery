@@ -21,6 +21,8 @@
 		'440': '#BFAF83'
 	};
 
+	$: selectedLoteriaNome = loterias[concurso.loteria].nome;
+
 	async function getResults(concursoId: string) {
 		const cache = localStorage.getItem(`@megasena-resultado[${concursoId}]`);
 
@@ -52,14 +54,14 @@
 		style="background-color: {bgColors[selectedConcursoId]}"
 	>
 		<Form {loterias} {getResults} />
-		<Name nome={loterias[0].nome} />
+		<Name nome={selectedLoteriaNome} />
 		<ContestDate data_concurso={concurso.data} numero_concurso={concurso.id} />
 		<Divider windowsWidth={innerWidth} />
 	</section>
 
 	<section
-		class="grid place-items-center pt-20 pb-8 px-4 gap-[5.25rem]
-			lg:py-16 lg:m-0 lg:grid-rows-3"
+		class="grid grid-rows-3 place-items-center pt-20 pb-8 px-4 gap-[5.25rem]
+		lg:py-16 lg:m-0 lg:grid-rows-3"
 	>
 		<ContestResult dezenas={concurso.numeros} />
 		<Advice />
