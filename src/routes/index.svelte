@@ -47,8 +47,8 @@
 
 <main class="min-h-screen grid lg:grid-cols-2">
 	<section
-		class="relative grid grid-flow-row place-items-center bg-brand-mega py-16 pb-28 gap-20 lg:grid-rows-3 
-	lg:gap-[5.25rem] lg:pr-16"
+		class="relative grid grid-flow-row place-items-center bg-brand-mega py-16 pb-28 gap-20 
+		lg:grid-rows-3 lg:gap-[5.25rem] lg:pr-16 lg:py-16"
 		style="background-color: {bgColors[selectedConcursoId]}"
 	>
 		<Form {loterias} {getResults} />
@@ -58,7 +58,7 @@
 	</section>
 
 	<section
-		class="grid grid-flow-row place-items-center pt-20 pb-8 px-4 gap-[5.25rem]
+		class="grid place-items-center pt-20 pb-8 px-4 gap-[5.25rem]
 			lg:py-16 lg:m-0 lg:grid-rows-3"
 	>
 		<ContestResult dezenas={concurso.numeros} />

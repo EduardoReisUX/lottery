@@ -6,8 +6,9 @@
 </script>
 
 <div
-	class="relative flex flex-wrap justify-center items-center gap-6 
-				lg:row-start-2"
+	class="row-span-1 relative flex flex-wrap justify-center items-center self-end gap-6
+	lg:row-span-2
+"
 >
 	{#each dezenas as dezena, index}
 		{#key dezena + dezenas.length}
