@@ -11,6 +11,8 @@
 </script>
 
 <script lang="ts">
+	import { prefetch } from '$app/navigation';
+
 	export let title: string;
 </script>
 
@@ -22,6 +24,7 @@
 		</h3>
 		<a
 			href="/"
+			on:focus={async () => await prefetch('/')}
 			sveltekit:prefetch
 			class="bg-brand-mega py-2 px-4 rounded-md text-lg text-brand-white shadow shadow-brand-mega/20 duration-150
 			hover:shadow-md hover:shadow-brand-mega/50"
