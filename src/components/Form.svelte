@@ -12,8 +12,7 @@
 			<option class="uppercase" value={option_value}>{option_value}</option>
 		{/each}
 	</select>
-	<button
-		class="p-4 bg-brand-diaDeSorte text-brand-white font-bold rounded-lg shadow-md"
-		type="submit">Pesquisar</button
+	<button class="p-4 bg-brand-quina text-brand-white font-bold rounded-lg shadow-md" type="submit"
+		>Pesquisar</button
 	>
 </form>
