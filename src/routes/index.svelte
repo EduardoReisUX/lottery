@@ -9,6 +9,7 @@
 	import type { ConcursoType, HomeProps } from '$root/types';
 
 	export let props: HomeProps;
+
 	let { concurso, loterias } = props;
 	let innerWidth = 0;
 	let selectedConcursoId = '2359';
